@@ -11,7 +11,7 @@ namespace j4s\diagram;
  * 
  * @package     j4s\diagram
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.2 2018-11-23 16:07:13
+ * @version     v2.0.0 2018-11-26 22:28:51
  */
 class Diagram
 {
@@ -113,7 +113,7 @@ class Diagram
 
     /**
      * Возвращает массив ссылок для заданной в массиве последовательности блоков
-     * @version v1.0.2 2018-11-23 16:18:34
+     * @version v2.0.0 2018-11-26 22:28:29
      * @param array $sequenceArray - Последовательность блоков
      * @return void
      */
@@ -121,7 +121,10 @@ class Diagram
     {
         foreach ($sequenceArray as $sequenceElement) {
             if (isset($lastElement)) {
-                $this->addLink($lastElement, $sequenceElement, '->');
+                $from = $lastElement[0];
+                $to = $sequenceElement[0];
+                $arrow = $sequenceElement[1] ?? '->';
+                $this->addLink($from, $to, $arrow);
             }
     
             $lastElement = $sequenceElement;
