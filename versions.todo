@@ -1,4 +1,7 @@
 releases:
+v1.0.0-alpha.4 close #5
+ ✔ #5 Изменить Diagram->linksFromArray(), на поддержку различного типа стрелок @done (18-11-27 11:28)
+
 v1.0.0-alpha.3 close #1, close #2, close #3, close #4
 
 
