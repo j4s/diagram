@@ -8,7 +8,7 @@ namespace j4s\diagram;
  *
  * @package     j4s\diagram\DiagramTest
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.1 2018-11-24 08:57:10
+ * @version     v1.1.0 2019-05-17 19:17:09
  */
 class DiagramTest
 {
@@ -106,7 +106,7 @@ class DiagramTest
 
     /**
      * Тест для метода addLink
-     * @version v1.0.1 2018-11-24 08:58:37
+     * @version v1.1.0 2019-05-17 19:16:17
      * @return string - html тег с сообщением результата прохождения теста
      */
     public static function addLinkTest()
@@ -127,12 +127,23 @@ class DiagramTest
         $UTest->isEqual("addLink();", $expect, $act);
 
 
+        // Arrange Test
+        $UTest->nextHint = 'Добавляет заданную связь(обычно стрелку) в свойство $links между двумя заданными блоками с переворачиванием';
+        $expect = '[Cat]^-[Pet]';
+        // Act
+        $RE1 = new Diagram();
+        $RE1->addLink('Pet', 'Cat', '^-', true);
+        $act = $RE1->links[0];
+        // Assert Test
+        $UTest->isEqual("addLink();", $expect, $act);
+
+
         return $UTest->functionResults;
     }
 
     /**
      * Тест для метода addLinks
-     * @version v1.0.1 2018-11-24 08:58:52
+     * @version v1.1.0 2019-05-17 19:16:58
      * @return string - html тег с сообщением результата прохождения теста
      */
     public static function addLinksTest()
@@ -148,6 +159,20 @@ class DiagramTest
         // Act
         $RE1 = new Diagram();
         $links = array(array('Pet', 'Cat', '^-'), array('j4s\base\Controller', 'Pet', '^-'));
+        $RE1->addLinks($links);
+        $act = '';
+        $act .= $RE1->links[0];
+        $act .= $RE1->links[1];
+        // Assert Test
+        $UTest->isEqual("addLinks();", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'Добавляет заданные связи(обычно стрелки) в свойство $links между парами заданных классов С переворачиванием одной из связей';
+        $expect = '[Pet]^-[Cat][Pet]^-[j4s\base\Controller]';
+        // Act
+        $RE1 = new Diagram();
+        $links = array(array('Pet', 'Cat', '^-'), array('j4s\base\Controller', 'Pet', '^-', true));
         $RE1->addLinks($links);
         $act = '';
         $act .= $RE1->links[0];

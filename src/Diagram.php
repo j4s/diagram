@@ -11,7 +11,7 @@ namespace j4s\diagram;
  * 
  * @package     j4s\diagram
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v2.0.0 2018-11-26 22:28:51
+ * @version     v2.1.0 2019-05-17 19:14:10
  */
 class Diagram
 {
@@ -71,15 +71,20 @@ class Diagram
 
     /**
      * Добавляет заданную связь(обычно стрелку) в свойство $links между двумя заданными блоками
-     * @version v1.0.1 2018-11-23 14:46:00
+     * @version v1.1.0 2019-04-20 18:50:51
      * @param string $block1Name - Имя первого блока
      * @param string $block2Name - Имя второго блока
      * @param string $linkType - Тип связи
+     * @param bool $turnAround - Переворачивать ли связь
      * @return void
      */
-    public function addLink(string $block1Name, string $block2Name, string $linkType)
+    public function addLink(string $block1Name, string $block2Name, string $linkType, bool $turnAround = false)
     {
-        $linkPossible = "[" . $block1Name . "]" . $linkType . "[" . $block2Name . "]";
+        if ($turnAround === false) {
+            $linkPossible = "[" . $block1Name . "]" . $linkType . "[" . $block2Name . "]";
+        } else {
+            $linkPossible = "[" . $block2Name . "]" . $linkType . "[" . $block1Name . "]";
+        }
         if ($this->duplicateLinks || !in_array($linkPossible, $this->links)) {
             $this->links[] = $linkPossible;
         }
@@ -87,14 +92,18 @@ class Diagram
 
     /**
      * Добавляет заданные связи(обычно стрелки) в свойство $links между парами заданных блоков
-     * @version v1.0.1 2018-11-23 14:45:50
+     * @version v1.1.0 2019-05-17 19:13:28
      * @param array $links - массив связей
      * @return void
      */
     public function addLinks(array $links)
     {
         foreach ($links as $link) {
-            $this->addLink($link[0], $link[1], $link[2]);
+            if (isset($link[3])) {
+                $this->addLink($link[0], $link[1], $link[2], $link[3]);
+            } else {
+                $this->addLink($link[0], $link[1], $link[2]);
+            }
         }
     }
 
