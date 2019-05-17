@@ -106,7 +106,7 @@ class DiagramTest
 
     /**
      * Тест для метода addLink
-     * @version v1.0.1 2018-11-24 08:58:37
+     * @version v1.1.0 2019-05-17 19:16:17
      * @return string - html тег с сообщением результата прохождения теста
      */
     public static function addLinkTest()
