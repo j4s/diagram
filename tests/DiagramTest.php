@@ -8,7 +8,7 @@ namespace j4s\diagram;
  *
  * @package     j4s\diagram\DiagramTest
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.1 2018-11-24 08:57:10
+ * @version     v1.1.0 2019-05-17 19:17:09
  */
 class DiagramTest
 {
@@ -143,7 +143,7 @@ class DiagramTest
 
     /**
      * Тест для метода addLinks
-     * @version v1.0.1 2018-11-24 08:58:52
+     * @version v1.1.0 2019-05-17 19:16:58
      * @return string - html тег с сообщением результата прохождения теста
      */
     public static function addLinksTest()
