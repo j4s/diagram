@@ -127,6 +127,17 @@ class DiagramTest
         $UTest->isEqual("addLink();", $expect, $act);
 
 
+        // Arrange Test
+        $UTest->nextHint = 'Добавляет заданную связь(обычно стрелку) в свойство $links между двумя заданными блоками с переворачиванием';
+        $expect = '[Cat]^-[Pet]';
+        // Act
+        $RE1 = new Diagram();
+        $RE1->addLink('Pet', 'Cat', '^-', true);
+        $act = $RE1->links[0];
+        // Assert Test
+        $UTest->isEqual("addLink();", $expect, $act);
+
+
         return $UTest->functionResults;
     }
 
@@ -148,6 +159,20 @@ class DiagramTest
         // Act
         $RE1 = new Diagram();
         $links = array(array('Pet', 'Cat', '^-'), array('j4s\base\Controller', 'Pet', '^-'));
+        $RE1->addLinks($links);
+        $act = '';
+        $act .= $RE1->links[0];
+        $act .= $RE1->links[1];
+        // Assert Test
+        $UTest->isEqual("addLinks();", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'Добавляет заданные связи(обычно стрелки) в свойство $links между парами заданных классов С переворачиванием одной из связей';
+        $expect = '[Pet]^-[Cat][Pet]^-[j4s\base\Controller]';
+        // Act
+        $RE1 = new Diagram();
+        $links = array(array('Pet', 'Cat', '^-'), array('j4s\base\Controller', 'Pet', '^-', true));
         $RE1->addLinks($links);
         $act = '';
         $act .= $RE1->links[0];
