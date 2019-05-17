@@ -11,7 +11,7 @@ namespace j4s\diagram;
  * 
  * @package     j4s\diagram
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v2.0.0 2018-11-26 22:28:51
+ * @version     v2.1.0 2019-05-17 19:14:10
  */
 class Diagram
 {
